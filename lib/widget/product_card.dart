@@ -1,16 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../model/Product_model.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
   final double WidthFactor;
   final double leftPosition;
+  final double? Double;
   final bool isWishlist;
   final double bottomPosition;
+  final Color? boxColor;
+  final Color? textColor;
 
   const ProductCard({
     Key? key,
+    this.Double,
+    this.boxColor,
+    this.textColor,
     required this.product,
     this.WidthFactor = 2.5,
     this.leftPosition = 5,
@@ -52,13 +59,18 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 67,
+            top: Double ?? 67,
             left: leftPosition + 2.5,
             child: Container(
               width: widthValue - 10 - leftPosition,
               height: 70,
               alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(color: Colors.black.withAlpha(150)),
+
+              ///
+              decoration:
+                  BoxDecoration(color: boxColor ?? Colors.black.withAlpha(150)),
+
+              ///
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -74,14 +86,14 @@ class ProductCard extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .headline4!
-                                .copyWith(color: Colors.white),
+                                .copyWith(color: textColor ??Colors.white),
                           ),
                           Text(
                             '\u20B9${product.price}',
                             style: Theme.of(context)
                                 .textTheme
                                 .headline4!
-                                .copyWith(color: Colors.white),
+                                .copyWith(color: textColor ?? Colors.white),
                           ),
                         ],
                       ),
@@ -91,16 +103,17 @@ class ProductCard extends StatelessWidget {
                             onPressed: () {},
                             icon: Icon(
                               Icons.add_circle,
-                              color: Colors.white,
+                              color: textColor ??Colors.white,
                             ))),
-                    isWishlist ?
-                    Expanded(
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            ))) :SizedBox()
+                    isWishlist
+                        ? Expanded(
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: textColor ??Colors.white,
+                                )))
+                        : SizedBox()
                   ],
                 ),
               ),

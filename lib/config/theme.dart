@@ -8,7 +8,7 @@ ThemeData theme(){
   );
 }
 TextTheme textTheme(){
-  return TextTheme(
+  return const TextTheme(
     headline1: TextStyle(
         color: Colors.black,
       fontSize: 12,
