@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:ecomm/model/wishlist_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import '../model/Product_model.dart';
+import '../../model/Product_model.dart';
 part 'wishlist_event.dart';
 part 'wishlist_state.dart';
 

@@ -13,6 +13,8 @@ class AppRouter {
         return HomeScreen.route();
       case HomeScreen.routeName:
         return HomeScreen.route();
+      case SplashScreen.routeName:
+        return SplashScreen.route();
       case cartScreen.routeName:
         return cartScreen.route();
       case UserScreen.routeName:

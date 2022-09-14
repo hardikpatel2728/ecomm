@@ -1,5 +1,7 @@
+import 'package:ecomm/bloc/cart/cart_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../model/Product_model.dart';
 
@@ -86,7 +88,7 @@ class ProductCard extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .headline4!
-                                .copyWith(color: textColor ??Colors.white),
+                                .copyWith(color: textColor ?? Colors.white),
                           ),
                           Text(
                             '\u20B9${product.price}',
@@ -98,20 +100,33 @@ class ProductCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.add_circle,
-                              color: textColor ??Colors.white,
-                            ))),
+                    BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        if(state is CartLoading){
+                          return Center(child: CircularProgressIndicator(),);
+                        }
+                        if(state is CartLoaded){
+                          return Expanded(
+                              child: IconButton(
+                                  onPressed: () {
+                                    context.read<CartBloc>().add(CartProductAdded(product));
+                                  },
+                                  icon: Icon(
+                                    Icons.add_circle,
+                                    color: textColor ?? Colors.white,
+                                  )));
+                        }else{
+                          return Text('Somethiing went Wrong.');
+                        }
+                      },
+                    ),
                     isWishlist
                         ? Expanded(
                             child: IconButton(
                                 onPressed: () {},
                                 icon: Icon(
                                   Icons.delete,
-                                  color: textColor ??Colors.white,
+                                  color: textColor ?? Colors.white,
                                 )))
                         : SizedBox()
                   ],

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/wishlist_bloc.dart';
+import '../bloc/wishlist/wishlist_bloc.dart';
 import '../widget/customAppBar.dart';
 import '../widget/customebottombar.dart';
 
